@@ -70,8 +70,8 @@ def handle_event(message, message_output):
         bot_data['Rule'] = message_data.get('rule_name')
         bot_data['ID'] = message_data.get('entity_id')
         bot_data['Name'] = message_data.get('entity_name')
-        bot, params = bot_to_run
         bot_data['Remediation'] = bot
+        bot, params = bot_to_run
         print(f'''{__file__} - Bot name to execute: {bot}''')
 
         try:

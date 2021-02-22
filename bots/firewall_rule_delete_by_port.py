@@ -3,9 +3,6 @@ from googleapiclient.errors import HttpError, Error
 from oauth2client.client import GoogleCredentials
 from pprint import pprint
 
-fw_port_check = 3389
-fw_destination_check_cidr = '0.0.0.0/0'
-
 def run_action(project_id, rule, entity, params):
     gcp_credentials = GoogleCredentials.get_application_default()
     gcp_service = discovery.build('compute', 'v1', credentials=gcp_credentials)
@@ -25,7 +22,7 @@ def run_action(project_id, rule, entity, params):
           fw_destination_port_to = r.get('destinationPortTo')
           fw_direction = r.get('direction')
           fw_rule_name = r.get('name')
-          if (fw_destination_port == fw_port_check and fw_destination_check_cidr == fw_destination):
+          if (fw_destination_port == fw_destination_port_to_delete and fw_destination_scope_to_delete == fw_destination):
               fw_rule_to_delete = fw_rule_name
               print(f'Match found on rule name : {fw_rule_to_delete}')
               print(f'Deleting rule : {fw_rule_to_delete}')
